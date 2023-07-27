@@ -27,7 +27,7 @@ public class BulletPooling : MonoBehaviour
     public void CreatePooledItem()//spawn bullet
     {
         //creating a bullet
-        GameObject go = Instantiate(PoolingManager.Instance.BulletPrefab, PoolingManager.Instance.BulletFirstPos);
+        GameObject go = Instantiate(PoolingManager.Instance.BulletPrefab);
 
         //Add to the list
         bulletList.Add(go);

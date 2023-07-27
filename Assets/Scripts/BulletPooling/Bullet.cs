@@ -29,7 +29,8 @@ public class Bullet : MonoBehaviour
     }
     public void Fire()
     {
-        rb.velocity = Vector3.forward * speed;
+        //rb.AddForce(thi.forward * speed);
+        rb.velocity = PoolingManager.Instance.BulletFirstPos.forward * speed;
 
     }
 
