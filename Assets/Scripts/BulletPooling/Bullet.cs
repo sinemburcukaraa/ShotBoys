@@ -7,7 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Bullet : MonoBehaviour
 {
-    int speed = 30;
+    public int speed = 30;
     Rigidbody rb;
 
     void OnEnable()
@@ -29,10 +29,13 @@ public class Bullet : MonoBehaviour
     }
     public void Fire()
     {
-        //rb.AddForce(thi.forward * speed);
         rb.velocity = PoolingManager.Instance.BulletFirstPos.forward * speed;
-
     }
 
+    private void OnBecameInvisible()
+    {
+        this.gameObject.SetActive(false);
+    }
+    
 }
 

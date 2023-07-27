@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3606913675587123972}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,6 +55,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -62,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 5e4e3d9f84c855f449ad0d7b5573ee5a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,8 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec9b513c2215be4cb4e6134270f08df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
-  target: {fileID: 1609665894647311734, guid: 9e4fb3908d7a86b4c9544cbf384b40b8, type: 3}
+  speed: 30
 --- !u!54 &3606913675587123972
 Rigidbody:
   m_ObjectHideFlags: 0

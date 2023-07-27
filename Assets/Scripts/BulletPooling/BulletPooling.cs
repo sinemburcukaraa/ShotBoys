@@ -1,4 +1,5 @@
 using PolygonArsenal;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class BulletPooling : MonoBehaviour
         SetCapacity();
     }
 
+
     public void SetCapacity()// call up capacity
     {
         for (int i = 0; i < defaultCapacity; i++)
@@ -23,11 +25,11 @@ public class BulletPooling : MonoBehaviour
             CreatePooledItem();
         }
     }
-
+    
     public void CreatePooledItem()//spawn bullet
     {
         //creating a bullet
-        GameObject go = Instantiate(PoolingManager.Instance.BulletPrefab);
+        GameObject go = Instantiate(PoolingManager.Instance.BulletPrefab,this.transform);
 
         //Add to the list
         bulletList.Add(go);
@@ -40,6 +42,8 @@ public class BulletPooling : MonoBehaviour
         Bullet bullet = go.AddComponent<Bullet>();
         go.name = "Bullet";
     }
+
+
     public void ShootNextBullet()//ranking
     {
         if (currentBulletIndex == defaultCapacity)
@@ -47,20 +51,8 @@ public class BulletPooling : MonoBehaviour
             currentBulletIndex = 0;
         }
 
-        OnTakeFromPool(currentBulletIndex);
+        bulletList[currentBulletIndex].SetActive(true);
         currentBulletIndex = (currentBulletIndex + 1) % bulletList.Count;
     }
-
-    //public void OnReturnedToPool(int index)
-    //{
-    //    bulletList[index].SetActive(false);
-    //}
-
-    public void OnTakeFromPool(int index)
-    {
-        bulletList[index].SetActive(true);
-    }
-
-
 }
 
