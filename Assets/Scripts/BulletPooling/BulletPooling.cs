@@ -35,7 +35,7 @@ public class BulletPooling : MonoBehaviour
         bulletList.Add(go);
 
         //set position and activity
-        go.transform.position = PoolingManager.Instance.BulletFirstPos.position;
+        //go.transform.position = PoolingManager.Instance.BulletFirstPos.position;
         go.SetActive(false);
 
         //add component and name

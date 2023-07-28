@@ -29,6 +29,7 @@ public class Bullet : MonoBehaviour
     }
     public void Fire()
     {
+        transform.position = PoolingManager.Instance.BulletFirstPos.position;
         rb.velocity = PoolingManager.Instance.BulletFirstPos.forward * speed;
     }
 
