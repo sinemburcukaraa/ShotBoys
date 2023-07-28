@@ -11,12 +11,11 @@ public class GunMove : MonoBehaviour
     {
         RotateZContinuously();
     }
-
     private void RotateZContinuously()
     {
-        transform.DORotate(new Vector3(90f, 0f, 45f), rotateDuration).SetEase(Ease.Linear).OnComplete(() =>
+        transform.DOLocalRotate(new Vector3(0, 45f, 0), rotateDuration).SetEase(Ease.Linear).OnComplete(() =>
         {
-            transform.DORotate(new Vector3(90f, 0f, -45f), rotateDuration).SetEase(Ease.Linear).OnComplete(() =>
+            transform.DOLocalRotate(new Vector3(0, -45f, 0), rotateDuration).SetEase(Ease.Linear).OnComplete(() =>
             {
                 RotateZContinuously();
             });
