@@ -49,26 +49,6 @@ public class EnemyMovement : MonoBehaviour
             transform.DOPath(reversedPath, hareketSuresi, pathType).SetLookAt(0.001F).OnComplete(ContinueCharacter).SetEase(Ease.Linear);
         }
     }
-
-    void OnWaypointChangeCallback(int waypointIndex)
-    {
-        DOVirtual.DelayedCall(1.6f, () =>
-        {
-            if (waypointIndex == pathArray.Length - 1)
-            {
-                StopCharacter();
-            }
-        });
-
-    }
-
-    void StopCharacter()
-    {
-
-        // Durduktan sonra bir süre sonra tekrar yolu takip etmeye baþlayacak
-        DOVirtual.DelayedCall(2, ContinueCharacter);
-    }
-
     void ContinueCharacter()
     {
         animator.SetBool("run", false);
