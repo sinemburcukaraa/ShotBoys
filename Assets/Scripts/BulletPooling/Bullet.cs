@@ -1,14 +1,22 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.XR;
-using static UnityEngine.GraphicsBuffer;
+using static ToonyColorsPro.ShaderGenerator.Enums;
 
 public class Bullet : MonoBehaviour
 {
     public int speed = 30;
     Rigidbody rb;
+    public AudioSource shotingSound, explosionSound;
+    public GameObject fireExplosionEffect;
+    private void Start()
+    {
+        shotingSound = GetComponent<AudioSource>();
+        playShotingSound();
+    }
 
     void OnEnable()
     {
@@ -24,8 +32,35 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            this.gameObject.SetActive(false);
+            other.gameObject.GetComponent<Ragdoll>().RagdollActive(true);
+            PlayExplosionSound();
+
+            AfterTheShot();
+
         }
+        if (other.CompareTag("Obstacle"))
+        {
+            PlayExplosionSound();
+            AfterTheShot();
+
+        }
+    }
+
+    public void AfterTheShot()
+    {
+        rb.velocity = Vector3.zero;
+        //fireExplosionEffect.SetActive(true);
+        DOVirtual.DelayedCall(3, () => { this.gameObject.SetActive(false); });
+        UIManager.instance.OpengameOverPanel();
+
+    }
+    public void playShotingSound()
+    {
+        shotingSound.Play();
+    }
+    public void PlayExplosionSound()
+    {
+        explosionSound.Play();
     }
     public void Fire()
     {
@@ -37,6 +72,6 @@ public class Bullet : MonoBehaviour
     {
         this.gameObject.SetActive(false);
     }
-    
+
 }
 

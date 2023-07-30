@@ -13,6 +13,7 @@ public class EnemyMovement : MonoBehaviour
     private bool isReversed = false;
     public Animator animator;
 
+   
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -36,7 +37,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (!isReversed) // Follow the path in normal order
         {
-            transform.DOPath(pathArray, hareketSuresi, pathType).SetLookAt(0.001F).OnComplete(ContinueCharacter).SetEase(Ease.Linear);
+            transform.DOPath(pathArray, hareketSuresi, pathType).SetLookAt(0.001F).OnComplete(ContinueCharacter).SetEase(Ease.Linear).SetId(1);
         }
         else // Follow the path in reverse order
         {
@@ -46,17 +47,16 @@ public class EnemyMovement : MonoBehaviour
                 reversedPath[i] = pathArray[pathArray.Length - 1 - i];
             }
 
-            transform.DOPath(reversedPath, hareketSuresi, pathType).SetLookAt(0.001F).OnComplete(ContinueCharacter).SetEase(Ease.Linear);
+            transform.DOPath(reversedPath, hareketSuresi, pathType).SetLookAt(0.001F).OnComplete(ContinueCharacter).SetEase(Ease.Linear).SetId(0);
         }
     }
+
     void ContinueCharacter()
     {
         animator.SetBool("run", false);
 
         isReversed = !isReversed;
-        DOVirtual.DelayedCall(2 , FollowPath);
-
-        
+        DOVirtual.DelayedCall(2 , FollowPath).SetId(3);
     }
 }
 

@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("LevelCount", PlayerPrefs.GetInt("LevelCount")+1);
             PlayerPrefs.SetInt("nextLevel", PlayerPrefs.GetInt("nextLevel") + 1);
 
-            UIManager.instance.OpenWinPanel();
+            //UIManager.instance.OpenWinPanel();
         }
     }
 
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("LevelCount", PlayerPrefs.GetInt("LevelCount"));
             PlayerPrefs.SetInt("nextLevel", PlayerPrefs.GetInt("nextLevel"));
 
-            UIManager.instance.OpengameOverPanel();
+            //UIManager.instance.OpengameOverPanel();
             
         }
     }
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         if (gameSit != GameSit.Started)
         {
             gameSit = GameSit.notStarted;
-            UIManager.instance.OpenStartPanel();
+            //UIManager.instance.OpenStartPanel();
 
             LevelManager.instance.NextLevel();
             if (Input.GetMouseButtonUp(0))

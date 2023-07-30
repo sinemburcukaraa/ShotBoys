@@ -9,12 +9,16 @@ public class Raycast : MonoBehaviour
     public int lrPower;
     public LayerMask outOfOrder;
     Vector3 secondPosForRaycast;
+    bool isHit;
+
     void Start()
     {
-        outOfOrder = 1 << 6;
+        outOfOrder = LayerMask.GetMask("Raycast");
         lr = GetComponent<LineRenderer>();
+        isHit = false;
     }
-    void FixedUpdate()
+
+    void Update()
     {
         lr.SetPosition(0, transform.position);
 
@@ -23,18 +27,31 @@ public class Raycast : MonoBehaviour
         {
             if (hit.collider)
             {
+                isHit = true;
                 secondPosForRaycast = hit.point;
                 secondPosForRaycast.y = lr.GetPosition(0).y;
-                lr.SetPosition(1, secondPosForRaycast);
             }
         }
         else
         {
-            secondPosForRaycast = transform.TransformDirection(Vector3.forward) * lrPower;
+            isHit = false;
+        }
+        collisionDetected();
+
+
+    }
+    public void collisionDetected()
+    {
+        if (isHit)
+        {
+            lr.SetPosition(1, secondPosForRaycast);
+        }
+        else
+        {
+            secondPosForRaycast = transform.position + transform.forward * lrPower;
             secondPosForRaycast.y = lr.GetPosition(0).y;
             lr.SetPosition(1, secondPosForRaycast);
         }
-
     }
 
 }

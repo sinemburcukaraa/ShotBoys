@@ -10,6 +10,11 @@ public class ClientPooling : MonoBehaviour
     public int index;
     public int numberOfShots;
     public TextMeshProUGUI numberOfShotsText;
+    public  static ClientPooling instance;
+    private void Awake()
+    {
+        if (instance == null) { instance = this; }
+    }
     void Start()
     {
         _pool = gameObject.AddComponent<BulletPooling>();
@@ -31,5 +36,6 @@ public class ClientPooling : MonoBehaviour
     public void PrintText()
     {
         numberOfShotsText.SetText(numberOfShots.ToString());
+        //UIManager.instance.OpengameOverPanel(numberOfShots);
     }
 }

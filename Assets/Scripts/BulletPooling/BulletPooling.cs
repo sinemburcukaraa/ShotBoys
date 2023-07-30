@@ -1,4 +1,4 @@
-using PolygonArsenal;
+//using PolygonArsenal;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -39,7 +39,6 @@ public class BulletPooling : MonoBehaviour
         go.SetActive(false);
 
         //add component and name
-        Bullet bullet = go.AddComponent<Bullet>();
         go.name = "Bullet";
     }
 
