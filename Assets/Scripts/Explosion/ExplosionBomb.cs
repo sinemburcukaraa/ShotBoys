@@ -39,18 +39,15 @@ public class ExplosionBomb : MonoBehaviour
             {
                 rb.AddExplosionForce(force, transform.position, radius);
             }
-
         }
-        
-        this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
 
+        this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
     }
     public void ObjectsInTheAffectedArea(Collider colliders)
     {
         if (colliders.gameObject.tag == "Enemy")
         {
             colliders.GetComponent<Ragdoll>().RagdollActive(true);
-            Debug.Log("fv");
         }
     }
     public void ExplosionEffectPlay()
