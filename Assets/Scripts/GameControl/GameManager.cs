@@ -57,13 +57,11 @@ public class GameManager : MonoBehaviour
         if (gameSit != GameSit.Started)
         {
             gameSit = GameSit.notStarted;
-            Debug.Log("not");
 
             UIManager.instance.OpenStartPanel();
             LevelManager.instance.NextLevel();
             if (Input.GetMouseButtonUp(0))
             {
-                print("dsfv");
                 //Invoke("Win", 2.0f);
                 UIManager.instance.startPanel.SetActive(false); 
                 Started();

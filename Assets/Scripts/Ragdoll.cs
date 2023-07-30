@@ -12,7 +12,6 @@ public class Ragdoll : MonoBehaviour
     {
         for (int i = 0; i < rigidbodies.Length; i++)
         {
-            print("sdfdv");
             rigidbodies[i].isKinematic = true;
             colliders[i].enabled = false;
         }
@@ -20,18 +19,18 @@ public class Ragdoll : MonoBehaviour
 
     public void RagdollActive(bool state)
     {
-        //if (!ragdollUsed)
-        //{
-           
-        //}
-        for (int i = 0; i < rigidbodies.Length; i++)
+        if (!ragdollUsed)
         {
-            rigidbodies[i].isKinematic = !state;
-            colliders[i].enabled = state;
+            for (int i = 0; i < rigidbodies.Length; i++)
+            {
+                rigidbodies[i].isKinematic = !state;
+                colliders[i].enabled = state;
 
+            }
+            Organise();
+            ragdollUsed=true;
         }
-        Organise();
-        ragdollUsed = true;
+   
     }
     public void Organise()
     {

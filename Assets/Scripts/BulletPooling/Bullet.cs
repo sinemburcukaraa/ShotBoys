@@ -51,16 +51,17 @@ public class Bullet : MonoBehaviour
             AfterTheShot();
 
         }
-      
-
-
     }
 
     public void AfterTheShot()
     {
         rb.velocity = Vector3.zero;
-        DOVirtual.DelayedCall(3, () => { this.gameObject.SetActive(false); });
+        Invoke("Deactive", 3);
 
+    }
+    public void Deactive()
+    {
+        this.gameObject.SetActive(false);
     }
     public void playShotingSound()
     {
@@ -74,14 +75,15 @@ public class Bullet : MonoBehaviour
     {
         transform.position = sourcePosition.position;
         rb.velocity = sourcePosition.forward * speed;
-        DOVirtual.DelayedCall(1.5f, Invisible);
+        Invoke("Invisible", 1.5f);
+
     }
 
     public void Invisible()
     {
         rb.velocity = Vector3.zero;
-        this.gameObject.SetActive(false);
         GameManager.instance.GameOver();
+        this.gameObject.SetActive(false);
 
     }
 

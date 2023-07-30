@@ -41,8 +41,7 @@ public class BulletPooling : MonoBehaviour
     {
         for(int i = 0;i < PoolingManager.Instance.sourcePositionList.Count;i++)
         {
-            ShotNextBullet(PoolingManager.Instance.sourcePositionList[i]);
-                
+            ShotNextBullet(PoolingManager.Instance.sourcePositionList[i]);         
         }
     }
     public void ShotNextBullet(Transform pos)//ranking

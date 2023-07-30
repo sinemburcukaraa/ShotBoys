@@ -24,7 +24,7 @@ public class EnemyMovement : MonoBehaviour
         {
             isStarted = true;
             animator = GetComponent<Animator>();
-            DOVirtual.DelayedCall(2, PathNodes);
+            Invoke("PathNodes", 2);
         }
         //else if (GameManager.instance.gameSit == GameManager.GameSit.GameOver && isStarted)
         //{
@@ -46,6 +46,12 @@ public class EnemyMovement : MonoBehaviour
 
     void FollowPath()
     {
+        // Animator nesnesinin yok edilip edilmediðini kontrol et
+        if (animator == null)
+        {
+            return; // Animator nesnesi yok edildiyse, iþlemi durdur
+        }
+
         animator.SetBool("run", true);
 
         if (!isReversed) // Follow the path in normal order
@@ -70,6 +76,12 @@ public class EnemyMovement : MonoBehaviour
 
     void ContinueCharacter()
     {
+        // Animator nesnesinin yok edilip edilmediðini kontrol et
+        if (animator == null)
+        {
+            return; // Animator nesnesi yok edildiyse, iþlemi durdur
+        }
+
         animator.SetBool("run", false);
 
         isReversed = !isReversed;
@@ -81,9 +93,22 @@ public class EnemyMovement : MonoBehaviour
 
     public void DotweenKill()
     {
-        mySequence.Kill();
-        mySequence2.Kill();
-        mySequence3.Kill();
-    }
-}
+        if (mySequence != null && mySequence.IsActive())
+        {
+            mySequence.Kill();
+        }
 
+        if (mySequence2 != null && mySequence2.IsActive())
+        {
+            mySequence2.Kill();
+        }
+
+        if (mySequence3 != null && mySequence3.IsActive())
+        {
+            mySequence3.Kill();
+
+        }
+
+    }
+
+}

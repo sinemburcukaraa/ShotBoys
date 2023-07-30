@@ -40,10 +40,8 @@ public class ExplosionBomb : MonoBehaviour
                 rb.AddExplosionForce(force, transform.position, radius);
             }
 
-        }
-        
+        }   
         this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
-
     }
     public void ObjectsInTheAffectedArea(Collider colliders)
     {
