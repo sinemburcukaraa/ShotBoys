@@ -10,7 +10,7 @@ public class Raycast : MonoBehaviour
     public LayerMask outOfOrder;
     Vector3 secondPosForRaycast;
     bool isHit;
-
+    
     void Start()
     {
         outOfOrder = LayerMask.GetMask("Raycast");

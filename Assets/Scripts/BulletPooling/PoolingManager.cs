@@ -4,7 +4,7 @@ using UnityEngine;
 public class PoolingManager : MonoBehaviour
 {
     public GameObject BulletPrefab;
-    public Transform BulletFirstPos;
+    public List<Transform> sourcePositionList=new List<Transform>();    
     public static PoolingManager Instance;
 
     private void Awake()

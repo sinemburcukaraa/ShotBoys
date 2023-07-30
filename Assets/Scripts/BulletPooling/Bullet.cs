@@ -12,6 +12,9 @@ public class Bullet : MonoBehaviour
     Rigidbody rb;
     public AudioSource shotingSound, explosionSound;
     public GameObject fireExplosionEffect;
+    public BulletPooling bulletPooling;
+    public Transform sourcePosition;
+  
     private void Start()
     {
         shotingSound = GetComponent<AudioSource>();
@@ -24,34 +27,39 @@ public class Bullet : MonoBehaviour
         Fire();
     }
 
-    private void OnDisable()
-    {
-        transform.position = PoolingManager.Instance.BulletFirstPos.position;
-    }
+    //private void OnDisable()
+    //{
+    //    transform.position = PoolingManager.Instance.BulletFirstPos.position;
+    //}
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && EnemyManager.instance.differentObject!=other.gameObject)
         {
+          
+            EnemyManager.instance.differentObject = other.gameObject;
             other.gameObject.GetComponent<Ragdoll>().RagdollActive(true);
             PlayExplosionSound();
 
             AfterTheShot();
 
         }
-        if (other.CompareTag("Obstacle"))
+        else if (other.CompareTag("Obstacle"))
         {
             PlayExplosionSound();
+            fireExplosionEffect.SetActive(true);
+
             AfterTheShot();
 
         }
+      
+
+
     }
 
     public void AfterTheShot()
     {
         rb.velocity = Vector3.zero;
-        //fireExplosionEffect.SetActive(true);
         DOVirtual.DelayedCall(3, () => { this.gameObject.SetActive(false); });
-        UIManager.instance.OpengameOverPanel();
 
     }
     public void playShotingSound()
@@ -64,13 +72,17 @@ public class Bullet : MonoBehaviour
     }
     public void Fire()
     {
-        transform.position = PoolingManager.Instance.BulletFirstPos.position;
-        rb.velocity = PoolingManager.Instance.BulletFirstPos.forward * speed;
+        transform.position = sourcePosition.position;
+        rb.velocity = sourcePosition.forward * speed;
+        DOVirtual.DelayedCall(1.5f, Invisible);
     }
 
-    private void OnBecameInvisible()
+    public void Invisible()
     {
+        rb.velocity = Vector3.zero;
         this.gameObject.SetActive(false);
+        GameManager.instance.GameOver();
+
     }
 
 }

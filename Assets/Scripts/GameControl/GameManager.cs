@@ -20,26 +20,26 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
-        if (gameSit==GameSit.Started)
+        if (gameSit == GameSit.Started && EnemyManager.instance.enemyCount == 0)
         {
             gameSit = GameSit.Win;
-            PlayerPrefs.SetInt("LevelCount", PlayerPrefs.GetInt("LevelCount")+1);
+            PlayerPrefs.SetInt("LevelCount", PlayerPrefs.GetInt("LevelCount") + 1);
             PlayerPrefs.SetInt("nextLevel", PlayerPrefs.GetInt("nextLevel") + 1);
 
-            //UIManager.instance.OpenWinPanel();
+            UIManager.instance.OpenWinPanel();
         }
     }
 
     public void GameOver()
     {
-        if (gameSit == GameSit.Started)
+        if (gameSit == GameSit.Started && ClientPooling.instance.numberOfShots == 0 && EnemyManager.instance.enemyCount > 0)
         {
             gameSit = GameSit.GameOver;
             PlayerPrefs.SetInt("LevelCount", PlayerPrefs.GetInt("LevelCount"));
             PlayerPrefs.SetInt("nextLevel", PlayerPrefs.GetInt("nextLevel"));
 
-            //UIManager.instance.OpengameOverPanel();
-            
+            UIManager.instance.OpengameOverPanel();
+
         }
     }
     public void Started()
@@ -48,26 +48,28 @@ public class GameManager : MonoBehaviour
 
         UIManager.instance.OpengamePanel();
         LevelManager.instance.LevelTextControl();
- 
+
     }
 
     public void NotStarted()
     {
-        Debug.Log("not");
 
         if (gameSit != GameSit.Started)
         {
             gameSit = GameSit.notStarted;
-            //UIManager.instance.OpenStartPanel();
+            Debug.Log("not");
 
+            UIManager.instance.OpenStartPanel();
             LevelManager.instance.NextLevel();
             if (Input.GetMouseButtonUp(0))
             {
+                print("dsfv");
                 //Invoke("Win", 2.0f);
+                UIManager.instance.startPanel.SetActive(false); 
                 Started();
             }
-            
+
         }
     }
-  
+
 }

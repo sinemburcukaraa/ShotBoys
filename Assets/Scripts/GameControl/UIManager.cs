@@ -17,42 +17,41 @@ public class UIManager : MonoBehaviour
     }
     void Start()
     {
-        OpengamePanel();
-        totalEnemyCount = EnemyManager.instance.enemyCount;
-
-        WriteText();
+        GameManager.instance.NotStarted();
     }
+    public void OpenStartPanel()
+    {
+        startPanel.SetActive(true);
 
+    }
     public void WriteText()
     {
+
         enemyCountText.SetText(EnemyManager.instance.enemyCount.ToString() + "/" + totalEnemyCount.ToString());
-        OpenWinPanel();
+        GameManager.instance.Win();
     }
-    
+
     public void OpenWinPanel()
     {
-        if (EnemyManager.instance.enemyCount == 0)
-        {
-            winPanel.gameObject.SetActive(true);
-            ClosegamePanel();
-            GameManager.instance.Win();
-
-        }
+        winPanel.gameObject.SetActive(true);
+        ClosegamePanel();
 
     }
     public void OpengameOverPanel()
     {
-        if (ClientPooling.instance.numberOfShots == 0 && EnemyManager.instance.enemyCount > 0)
-        {
-            gameOverPanel.gameObject.SetActive(true);
-            ClosegamePanel();
-            GameManager.instance.GameOver();
-        }
+
+
+        gameOverPanel.gameObject.SetActive(true);
+        ClosegamePanel();
+
 
     }
     public void OpengamePanel()
     {
         gamePanel.gameObject.SetActive(true);
+        totalEnemyCount = EnemyManager.instance.enemyCount;
+        WriteText();
+
     }
     public void ClosegamePanel()
     {
@@ -64,10 +63,10 @@ public class UIManager : MonoBehaviour
     //    startPanel.SetActive(false);
     //}
 
-    //public void restartLevel()
-    //{
-    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    //}
+    public void restartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
 
 }

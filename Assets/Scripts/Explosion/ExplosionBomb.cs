@@ -50,7 +50,6 @@ public class ExplosionBomb : MonoBehaviour
         if (colliders.gameObject.tag == "Enemy")
         {
             colliders.GetComponent<Ragdoll>().RagdollActive(true);
-            Debug.Log("fv");
         }
     }
     public void ExplosionEffectPlay()

@@ -8,16 +8,13 @@ using UnityEngine.XR;
 
 public class BulletPooling : MonoBehaviour
 {
-    public int defaultCapacity = 10;
+    public int defaultCapacity = 30;
     private List<GameObject> bulletList = new List<GameObject>();
     private int currentBulletIndex = 0;
-
     private void Start()
     {
         SetCapacity();
     }
-
-
     public void SetCapacity()// call up capacity
     {
         for (int i = 0; i < defaultCapacity; i++)
@@ -25,7 +22,6 @@ public class BulletPooling : MonoBehaviour
             CreatePooledItem();
         }
     }
-    
     public void CreatePooledItem()//spawn bullet
     {
         //creating a bullet
@@ -41,17 +37,24 @@ public class BulletPooling : MonoBehaviour
         //add component and name
         go.name = "Bullet";
     }
-
-
-    public void ShootNextBullet()//ranking
+    public void StartShot()
+    {
+        for(int i = 0;i < PoolingManager.Instance.sourcePositionList.Count;i++)
+        {
+            ShotNextBullet(PoolingManager.Instance.sourcePositionList[i]);
+                
+        }
+    }
+    public void ShotNextBullet(Transform pos)//ranking
     {
         if (currentBulletIndex == defaultCapacity)
         {
             currentBulletIndex = 0;
         }
-
+        bulletList[currentBulletIndex].GetComponent<Bullet>().sourcePosition = pos;
         bulletList[currentBulletIndex].SetActive(true);
         currentBulletIndex = (currentBulletIndex + 1) % bulletList.Count;
     }
+
 }
 

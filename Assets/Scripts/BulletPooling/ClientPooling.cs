@@ -11,6 +11,7 @@ public class ClientPooling : MonoBehaviour
     public int numberOfShots;
     public TextMeshProUGUI numberOfShotsText;
     public  static ClientPooling instance;
+    
     private void Awake()
     {
         if (instance == null) { instance = this; }
@@ -22,15 +23,19 @@ public class ClientPooling : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && numberOfShots >0)
+        if (GameManager.instance.gameSit == GameManager.GameSit.Started)
         {
-            //text control
-            numberOfShots--;
-            PrintText();
+            if (Input.GetMouseButtonDown(0) && numberOfShots > 0)
+            {
+                //text control
+                numberOfShots--;
+                PrintText();
 
-            //Shot
-            _pool.ShootNextBullet();
+                //Shot
+                _pool.StartShot();
+            }
         }
+        
     }
 
     public void PrintText()

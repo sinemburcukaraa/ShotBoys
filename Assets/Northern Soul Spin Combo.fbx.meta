@@ -1,49 +1,9 @@
 fileFormatVersion: 2
-guid: 9d8782e0b3e03b2499bd77d943ee0c01
+guid: a6785bdcb5a328a46a7bc21d747ae25c
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: _defaultMat
-    second: {fileID: 2100000, guid: f0bed3abf0f84274c8450b9b952d5001, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: carTire
-    second: {fileID: 2100000, guid: fce6e04a3dad4f34f99de1ac18e246fd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lightBack
-    second: {fileID: 2100000, guid: d614b5a8426c6294c862cac0e312b414, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lightFront
-    second: {fileID: 2100000, guid: d8232b03c4ce3184caedc0bbfee0cc9b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: paintRed
-    second: {fileID: 2100000, guid: 091973ffe0be05f42a24e787c3830541, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: plastic
-    second: {fileID: 2100000, guid: b36b79ed7c42a43419586fdd9645f053, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: wheelInside
-    second: {fileID: 2100000, guid: 812886d79bc01da49880cb81ed0eea1c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: window
-    second: {fileID: 2100000, guid: 0b1be94abcd9bca4982c1c51bf733ef7, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

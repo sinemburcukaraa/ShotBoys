@@ -12,14 +12,27 @@ public class EnemyMovement : MonoBehaviour
     private Vector3[] pathArray;
     private bool isReversed = false;
     public Animator animator;
-
-   
-    void Start()
+    bool isStarted = false;
+    Sequence mySequence, mySequence2, mySequence3;
+    private void Update()
     {
-        animator = GetComponent<Animator>();
-        DOVirtual.DelayedCall(2, PathNodes);
+        GameState();
     }
-
+    public void GameState()
+    {
+        if (GameManager.instance.gameSit == GameManager.GameSit.Started && !isStarted)
+        {
+            isStarted = true;
+            animator = GetComponent<Animator>();
+            DOVirtual.DelayedCall(2, PathNodes);
+        }
+        //else if (GameManager.instance.gameSit == GameManager.GameSit.GameOver && isStarted)
+        //{
+        //    animator.SetBool("dance", true);
+        //    isStarted
+        //        = false;
+        //}
+    }
     public void PathNodes()
     {
         pathArray = new Vector3[pathChart.childCount];
@@ -37,7 +50,9 @@ public class EnemyMovement : MonoBehaviour
 
         if (!isReversed) // Follow the path in normal order
         {
-            transform.DOPath(pathArray, hareketSuresi, pathType).SetLookAt(0.001F).OnComplete(ContinueCharacter).SetEase(Ease.Linear).SetId(1);
+            mySequence = DOTween.Sequence();
+            mySequence.Append(transform.DOPath(pathArray, hareketSuresi, pathType).SetLookAt(0.001F).OnComplete(ContinueCharacter).SetEase(Ease.Linear));
+
         }
         else // Follow the path in reverse order
         {
@@ -47,7 +62,9 @@ public class EnemyMovement : MonoBehaviour
                 reversedPath[i] = pathArray[pathArray.Length - 1 - i];
             }
 
-            transform.DOPath(reversedPath, hareketSuresi, pathType).SetLookAt(0.001F).OnComplete(ContinueCharacter).SetEase(Ease.Linear).SetId(0);
+            mySequence2 = DOTween.Sequence();
+            mySequence2.Append(transform.DOPath(reversedPath, hareketSuresi, pathType).SetLookAt(0.001F).OnComplete(ContinueCharacter).SetEase(Ease.Linear));
+
         }
     }
 
@@ -56,7 +73,17 @@ public class EnemyMovement : MonoBehaviour
         animator.SetBool("run", false);
 
         isReversed = !isReversed;
-        DOVirtual.DelayedCall(2 , FollowPath).SetId(3);
+
+
+        mySequence3 = DOTween.Sequence();
+        mySequence3.Append(DOVirtual.DelayedCall(2, FollowPath));
+    }
+
+    public void DotweenKill()
+    {
+        mySequence.Kill();
+        mySequence2.Kill();
+        mySequence3.Kill();
     }
 }
 
