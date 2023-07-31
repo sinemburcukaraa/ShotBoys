@@ -34,12 +34,12 @@ public class Ragdoll : MonoBehaviour
     }
     public void Organise()
     {
-        EditText();
         this.GetComponent<EnemyMovement>().DotweenKill();
         this.GetComponent<EnemyMovement>().enabled = false;
         this.GetComponent<Animator>().enabled = false;
         this.GetComponent<Rigidbody>().useGravity = true;
         //this.GetComponent<Rigidbody>().AddForce(Vector3.up * 500000 *Time.deltaTime);
+        EditText();
 
     }
     public void EditText()

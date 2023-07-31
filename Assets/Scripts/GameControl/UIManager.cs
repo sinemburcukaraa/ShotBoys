@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     public void OpenStartPanel()
     {
         startPanel.SetActive(true);
+        ClosegamePanel();
 
     }
     public void WriteText()
@@ -39,12 +40,8 @@ public class UIManager : MonoBehaviour
     }
     public void OpengameOverPanel()
     {
-
-
         gameOverPanel.gameObject.SetActive(true);
         ClosegamePanel();
-
-
     }
     public void OpengamePanel()
     {
@@ -65,7 +62,9 @@ public class UIManager : MonoBehaviour
 
     public void restartLevel()
     {
+       
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
 
 

@@ -14,24 +14,24 @@ public class EnemyMovement : MonoBehaviour
     public Animator animator;
     bool isStarted = false;
     Sequence mySequence, mySequence2, mySequence3;
+    public bool used;
     private void Update()
     {
         GameState();
+
     }
     public void GameState()
     {
+
         if (GameManager.instance.gameSit == GameManager.GameSit.Started && !isStarted)
         {
             isStarted = true;
             animator = GetComponent<Animator>();
-            Invoke("PathNodes", 2);
+
+            PathNodes();
         }
-        //else if (GameManager.instance.gameSit == GameManager.GameSit.GameOver && isStarted)
-        //{
-        //    animator.SetBool("dance", true);
-        //    isStarted
-        //        = false;
-        //}
+
+        
     }
     public void PathNodes()
     {
@@ -41,18 +41,17 @@ public class EnemyMovement : MonoBehaviour
             pathArray[i] = pathChart.GetChild(i).position;
         }
 
-        FollowPath();
+        if (!used)
+        {
+            FollowPath();
+
+        }
+
     }
 
     void FollowPath()
     {
-        // Animator nesnesinin yok edilip edilmediðini kontrol et
-        if (animator == null)
-        {
-            return; // Animator nesnesi yok edildiyse, iþlemi durdur
-        }
-
-        animator.SetBool("run", true);
+        enemyAnimator(true);
 
         if (!isReversed) // Follow the path in normal order
         {
@@ -76,14 +75,8 @@ public class EnemyMovement : MonoBehaviour
 
     void ContinueCharacter()
     {
-        // Animator nesnesinin yok edilip edilmediðini kontrol et
-        if (animator == null)
-        {
-            return; // Animator nesnesi yok edildiyse, iþlemi durdur
-        }
 
-        animator.SetBool("run", false);
-
+        enemyAnimator(false);
         isReversed = !isReversed;
 
 
@@ -110,5 +103,13 @@ public class EnemyMovement : MonoBehaviour
         }
 
     }
+    public void enemyAnimator(bool state)
+    {
+        if (animator == null)
+        {
+            return;
+        }
 
+        animator.SetBool("run", state);
+    }
 }

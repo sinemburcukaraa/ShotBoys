@@ -33,10 +33,9 @@ public class Bullet : MonoBehaviour
     //}
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && EnemyManager.instance.differentObject!=other.gameObject)
+        if (other.CompareTag("Enemy") && !other.GetComponent<EnemyMovement>().used)
         {
-          
-            EnemyManager.instance.differentObject = other.gameObject;
+            other.GetComponent<EnemyMovement>().used = true;
             other.gameObject.GetComponent<Ragdoll>().RagdollActive(true);
             PlayExplosionSound();
 
