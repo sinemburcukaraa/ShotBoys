@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private Transform pathChart;
     [SerializeField] private PathType pathType;
-    [SerializeField] private float hareketSuresi = 5f; // Karakterin hareket etmesi için belirlenen süre
+    [SerializeField] private float hareketSuresi = 5f; 
 
     private Vector3[] pathArray;
     private bool isReversed = false;

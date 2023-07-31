@@ -38,7 +38,6 @@ public class Ragdoll : MonoBehaviour
         this.GetComponent<EnemyMovement>().enabled = false;
         this.GetComponent<Animator>().enabled = false;
         this.GetComponent<Rigidbody>().useGravity = true;
-        //this.GetComponent<Rigidbody>().AddForce(Vector3.up * 500000 *Time.deltaTime);
         EditText();
 
     }

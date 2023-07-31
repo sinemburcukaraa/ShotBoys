@@ -20,7 +20,6 @@ public class BackgroundSound : MonoBehaviour
         }
     }
 
-    // ... (diðer deðiþkenler ve fonksiyonlar)
 
     private void Awake()
     {
@@ -35,6 +34,5 @@ public class BackgroundSound : MonoBehaviour
         }
     }
 
-    // ... (diðer fonksiyonlar ve kodlar)
 }
 
