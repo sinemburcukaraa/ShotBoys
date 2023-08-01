@@ -74,7 +74,7 @@ public class Bullet : MonoBehaviour
     {
         transform.position = sourcePosition.position;
         rb.velocity = sourcePosition.forward * speed;
-        Invoke("Invisible", 1.5f);
+        Invoke("Invisible", 2f);
 
     }
 
