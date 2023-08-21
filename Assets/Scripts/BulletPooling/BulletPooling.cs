@@ -20,7 +20,6 @@ public class BulletPooling : MonoBehaviour
         for (int i = 0; i < defaultCapacity; i++)
         {
             CreatePooledItem();
-            print("f");
         }
     }
     public void CreatePooledItem()//spawn bullet
